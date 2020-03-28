@@ -5,7 +5,7 @@
 [![Mozilla Public License Version 2.0](https://img.shields.io/badge/license-Mozilla-blue.svg)](./LICENSE)
 
 Jiangxi Watercolor Painting magazine is produced by Fine Artist Association of Jiangxi Province, China.
-It shows the art stories and works of the famous fine artist of Jiangxi Province, China.
+It shows the art stories and works of the famous fine artists of Jiangxi Province, China.
 This is the official GitHub repo to provide the digital copies in portable document format (.pdf file) which you can read free.
 
 ## Menu

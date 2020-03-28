@@ -1,0 +1,25 @@
+{
+  "magazines": [
+    {
+      "year": 2020,
+      "url": "magazine/WatercolorJx-2020.pdf",
+      "disable": true
+    },
+    {
+      "year": 2019,
+      "url": "magazine/WatercolorJx-2019.pdf"
+    },
+    {
+      "year": 2018,
+      "url": "magazine/WatercolorJx-2018.pdf"
+    },
+    {
+      "year": 2017,
+      "url": "magazine/WatercolorJx-2017.pdf"
+    },
+    {
+      "year": 2016,
+      "url": "magazine/WatercolorJx-2016.pdf"
+    }
+  ]
+}
