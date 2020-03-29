@@ -7,7 +7,7 @@
 _Jiangxi Watercolor Painting_ magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, China.
 
 - Producer: Watercolor & Gouache Committee, Fine Artist Association of Jiangxi Province, China.
-- Chief Editor: 段 湧 (David Tuan @artistduan ).
+- Chief Editor: 段 湧 ([David Tuan](https://github.com/artistduan)).
 
 This is the official GitHub repo to provide some of the digital copies in portable document format (.pdf file) which you can read free.
 
