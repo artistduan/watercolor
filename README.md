@@ -2,7 +2,7 @@
 
 《江西水彩画》官方仓库
 
-[![Creative Commons Attribution-ShareAlike 4.0 International License](../assets/cc-by-sa.png)](./LICENSE)
+[![Creative Commons Attribution-ShareAlike 4.0 International License](./assets/cc-by-sa.png)](./LICENSE)
 
 _Jiangxi Watercolor Painting_ magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, China.
 
@@ -13,7 +13,7 @@ This is the official GitHub repo to provide some of the digital copies in portab
 
 ## Menu
 
-以下为部分电子版副本，基于 PDF 文件格式，欢迎免费查阅。
+以下为部分电子版简体中文副本，基于 PDF 文件格式，欢迎免费查阅。
 
 - 2020
 - [2019](./magazine/WatercolorJx-2019.pdf)
