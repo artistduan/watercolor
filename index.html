@@ -7,10 +7,11 @@
     <meta property="og:title" content="Jiangxi Watercolor Painting" />
     <meta name="description" content="Jiangxi Watercolor Painting magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, China." />
     <meta property="og:description" content="Jiangxi Watercolor Painting magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, China." />
-    <link rel="canonical" href="https://artistduan.github.io/watercolor/" />
-    <title>Jiangxi Watercolor</title>
+    <link rel="canonical" href="https://jinchen.org/watercolor/" />
     <link href="https://cdn.jsdelivr.net/npm/hje@2.1.0/docs/css/site.art.css" rel="stylesheet" />
-    <link href="https://jinchen.org/css/current.css" rel="stylesheet" />
+     <link href="https://jinchen.org/css/current.css" rel="stylesheet" />
+   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hje@2.1.0/docs/js/site.js" ></script>
+    <title>Jiangxi Watercolor  江西水彩</title>
     <style type="text/css">
     h2.x-section {
         color: #7BE;
@@ -31,43 +32,60 @@
         height: 215px;
         border-radius: 4px;
     }
+    #title-magazine {
+        font-size: 20px;
+        font-style: normal;
+    }
     </style>
+    <script type="text/javascript" src="https://jinchen.org/js/current.js" ></script>
+    <script type="text/javascript">
+    function onInit() {
+        if (!curSite.translate({
+            "title": ""
+        })) return;
+        site.setElementProp("title-magazine", null, "《江西水彩》");
+        site.setElementProp("desc-magazine", null, "杂志向大家介绍来自中国江西的艺术家，在水彩画绘画道路上的精彩故事，以及所创造出的风格各异的众多精美作品。");
+        site.setElementProp("lable-producer", null, "出品");
+        site.setElementProp("value-producer", null, "江西省美术家协会 \\ 水彩·水粉艺委会");
+        site.setElementProp("lable-chief", null, "主编");
+        site.setElementProp("intro-articles", null, "请关注微信公众号了解详情。以下是部分内容。");
+        site.setElementProp("intro-pdfs", null, "以下是部分过往期刊电子版（PDF 格式），欢迎免费阅览。");
+        site.setElementProp("intro-scanqr", null, "微信扫码关注公众号");
+    }
+    </script>
 </head>
-<body>
+<body onload="onInit()">
     <header>
         <section>
             <h1><a href="https://jinchen.org"><em>Jinchen Art</em></a></h1>
             <ul>
                 <li title="虚实之间">
-                    <a href="https://jinchen.org/realunreal">Real &amp; Unreal</a>
+                    <a href="https://jinchen.org/realunreal" id="title-realun">Real &amp; Unreal</a>
                 </li>
                 <li class="state-sel" title="《江西水彩》">
-                    <a href="https://jinchen.org/watercolor">Jiangxi Watercolor</a>
+                    <a href="https://jinchen.org/watercolor" id="title-jxwatercolor">Jiangxi Watercolor</a>
                 </li>
                 <li title="金辰装饰设计">
-                    <a href="https://jinchen.org/decoration">Decoration</a>
+                    <a href="https://jinchen.org/decoration" id="title-decoration">Decoration</a>
                 </li>
             </ul>
         </section>
     </header>
     <section style="min-height: 640px; margin-bottom: 60px; ">
-        <h2><span>《江西水彩》</span></h2>
         <section>
-            <em style="font-size: 16px; ">Jiangxi Watercolor Painting</em>
-            <span>magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, P.R.China.</span>
+            <em id="title-magazine">Jiangxi Watercolor Painting</em>
+            <span id="desc-magazine">magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, P.R.China.</span>
         </section>
         <section>
             <ul>
-                <li><strong>Producer</strong> <span>出品</span>
-                    <br />Watercolor & Gouache Committee, Fine Artist Association of Jiangxi Province, P.R.China.
-                    <br />江西省美术家协会 \ 水彩·水粉艺委会</li>
-                <li><strong>Chief Editor</strong> <span>主编</span><br />段 湧 (David Tuan).</li>
+                <li><strong id="lable-producer">Producer</strong>
+                    <br /><span id="value-producer">Watercolor & Gouache Committee, Fine Artist Association of Jiangxi Province, P.R.China.</span></li>
+                <li><strong id="lable-chief">Chief Editor</strong><br /><span>段 湧 (David Tuan).</span></li>
             </ul>
         </section>
         <h2 class="x-section">WeChat<span>&nbsp; 微信公众号</span></h2>
         <section>
-            <span>Please follow the account at WeChat Media Platform to get details.</span>
-            <br /><span>请关注微信公众号了解详情。以下是部分内容。</span>
+            <span id="intro-articles">Please follow the account at WeChat Media Platform to get details.</span>
         </section>
         <section>
             <a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/LyMWE5WXvIt80Na4cSqFYA"><span>写生中国水彩协会南昌分会作品<span>&nbsp; 2025年5月</span></span>
@@ -93,8 +111,7 @@
         </section>
         <h2 class="x-section">Early Magazine<span>&nbsp; 早期杂志</span></h2>
         <section>
-            <span>You can read following free digital copies of yearbook. They are in portable document format (.pdf file).</span>
-            <br /><span>以下是部分过往期刊电子版（PDF 格式），欢迎免费阅览。</span>
+            <span id="intro-pdfs">You can read following free digital copies of yearbook. They are in portable document format (.pdf file).</span>
         </section>
         <section class="link-tile-wide">
             <a style="display: none; " href="./magazine/WatercolorJx-2020.pdf"><span>2020</span>
@@ -109,7 +126,7 @@
         <section>
             <div class="x-qrcode">
                 <img alt="QR Code" src="assets/qrcode_wechat.jpg" /><br />
-                <span>微信扫码关注公众号<br />Scan by WeChat</span>
+                <span id="intro-scanqr">Scan by WeChat</span>
             </div>
         </section>
     </footer>
