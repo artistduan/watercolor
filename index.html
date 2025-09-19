@@ -96,7 +96,6 @@
             "title": "",
             "title-magazine": "jxWatercolor"
         });
-        if (!zh) return;
         let arr = [2016, 2017, 2018, 2019].map(function (year) {
             let y = year.toString(10);
             let name = zh ? (y + "年刊") : ("Annal " + y);
@@ -116,6 +115,7 @@
             }
         });
         Hje.render("list-pdfs", { styleRefs: "link-tile-wide", children: arr });
+        if (!zh) return;
         site.setElementProp("desc-magazine", null, "杂志以优异多元的水彩画为展现契机和艺术平台，向大家介绍来自中国江西的艺术家和他们的精彩故事。");
         site.setElementProp("lable-producer", null, "出品");
         site.setElementProp("value-producer", null, "江西省美术家协会 \\ 水彩·水粉艺委会");
