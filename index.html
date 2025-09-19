@@ -8,46 +8,120 @@
     <meta name="description" content="Jiangxi Watercolor Painting magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, China." />
     <meta property="og:description" content="Jiangxi Watercolor Painting magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, China." />
     <link rel="canonical" href="https://jinchen.org/watercolor/" />
-    <link href="https://cdn.jsdelivr.net/npm/hje@2.1.0/docs/css/site.art.css" rel="stylesheet" />
-     <link href="https://jinchen.org/css/current.css" rel="stylesheet" />
-   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hje@2.1.0/docs/js/site.js" ></script>
+    <link href="https://cdn.jsdelivr.net/npm/hje@2.2.0/docs/css/site.art.css" rel="stylesheet" />
+    <link href="https://jinchen.org/css/current.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hje@2.2.0/docs/js/site.bundle.js" ></script>
     <title>Jiangxi Watercolor  江西水彩</title>
     <style type="text/css">
-    h2.x-section {
-        color: #7BE;
-        cursor: default;
-        user-select: none;
-    }
-    h2.x-section > span {
-        color: #58C;
-        font-size: 14px;
+    body > section:has(+ footer) {
+        margin-bottom: 160px;
     }
     footer > section > div.x-qrcode {
-        width: 215px;
-        text-align: center;
-        padding-top: 30px;
+        width: 215px; text-align: center; padding-top: 30px;
     }
     footer > section > div.x-qrcode > img {
-        width: 215px;
-        height: 215px;
-        border-radius: 4px;
+        width: 215px; height: 215px; border-radius: 4px;
     }
-    #title-magazine {
-        font-size: 20px;
-        font-style: normal;
+    #part-intro > div:first-child {
+        padding: 15px; border: 1px solid rgba(128, 128, 128, 0.1); border-radius: 4px 4px 0 0;
+    }
+    #part-intro > div:first-child > dfn {
+        font-size: 20px; font-style: normal;
+    }
+    #part-intro > div:first-child > dfn::before, #part-intro > div:first-child > dfn::after {
+        color: rgba(128, 128, 128, 0.6); user-select: none;
+    }
+    #part-intro > div:first-child > dfn::before{
+        content: "《";
+    }
+    #part-intro > div:first-child > dfn::after {
+        content: "》";
+    }
+    #part-intro > dl {
+        padding: 0; margin: 0;
+    }
+    #part-intro > dl > div {
+        list-style: none; padding: 15px; margin: 10px 0 0 0; border: 1px solid rgba(128, 128, 128, 0.1);
+    }
+    #part-intro > dl > div:last-child {
+        border-radius: 0 0 4px 4px;
+    }
+    #part-intro > dl > div > dt {
+        color: #999; width: 100px; vertical-align: middle; margin: 0 20px 0 0; display: inline-block; user-select: none;
+    }
+    #part-intro > dl > div > dd {
+        font-size: 16px; margin: 0; vertical-align: middle; display: inline-block;
+    }
+    #list-pdfs > a {
+        text-align: center;
+    }
+    #list-pdfs > a > img {
+        width: 100%; height: auto; max-width: 320px; max-height: 400px; text-align: center; margin: 0 auto; object-fit: contain; display: block;
+    }
+    #list-pdfs > a > img + span {
+        color: #CCC; font-size: 14px; text-align: center; margin-top: 8px; line-height: 20px; display: block;
+    }
+    #list-pdfs > a > img + span > img {
+        width: 16px; height: 16px; margin-right: 8px; vertical-align: middle;
+    }
+    #list-pdfs > a > img + span > span {
+        vertical-align: middle;
+    }
+    body > section > section.layout-wide-full {
+        padding: 20px; position: sticky; top: 0; z-index: 100;
+    }
+    body > section > section.layout-wide-full > h2 {
+        color: rgb(128, 192, 240); font-size: 20px; font-style: normal; font-weight: normal; margin-top: 0; margin-bottom: 0;
+    }
+    body > section > section.layout-wide-full + section > span:first-child {
+        color: #999; user-select: none;
+    }
+    section > a.link-long-button, section > a.link-long-button:visited {
+        padding: 14px 24px;
+    }
+    section > a.link-long-button:hover {
+        padding: 12px 24px 16px 24px;
+    }
+    section > a.link-long-button:active {
+        padding: 14px 24px;
+    }
+    section > a.link-long-button > span + span {
+        color: #999; font-size: 14px; margin-left: 20px;
     }
     </style>
     <script type="text/javascript" src="https://jinchen.org/js/current.js" ></script>
     <script type="text/javascript">
     function onInit() {
-        if (!curSite.translate({
-            "title": ""
-        })) return;
-        site.setElementProp("title-magazine", null, "《江西水彩》");
-        site.setElementProp("desc-magazine", null, "杂志向大家介绍来自中国江西的艺术家，在水彩画绘画道路上的精彩故事，以及所创造出的风格各异的众多精美作品。");
+        let zh = curSite.translate({
+            "title": "",
+            "title-magazine": "jxWatercolor"
+        });
+        if (!zh) return;
+        let arr = [2016, 2017, 2018, 2019].map(function (year) {
+            let y = year.toString(10);
+            let name = zh ? (y + "年刊") : ("Annal " + y);
+            return {
+                tagName: "a",
+                props: { href: "./magazine/WatercolorJx-" + y + ".pdf" },
+                children: [{
+                    tagName: "img",
+                    props: { alt: name, src: "./magazine/thumbs/wcp-jx-" + y + "-cover.jpg" }
+                }, {
+                    tagName: "span",
+                    children: [
+                        { tagName: "img", props: { alt: name, src: "./images/icons/pdf_s.png" } },
+                        { tagName: "span", children: name }
+                    ]
+                }]
+            }
+        });
+        Hje.render("list-pdfs", { styleRefs: "link-tile-wide", children: arr });
+        site.setElementProp("desc-magazine", null, "杂志以优异多元的水彩画为展现契机和艺术平台，向大家介绍来自中国江西的艺术家和他们的精彩故事。");
         site.setElementProp("lable-producer", null, "出品");
         site.setElementProp("value-producer", null, "江西省美术家协会 \\ 水彩·水粉艺委会");
         site.setElementProp("lable-chief", null, "主编");
+        site.setElementProp("title-articles", null, "微信公众号");
+        site.setElementProp("title-pdfs", null, "早期杂志");
         site.setElementProp("intro-articles", null, "请关注微信公众号了解详情。以下是部分内容。");
         site.setElementProp("intro-pdfs", null, "以下是部分过往期刊电子版（PDF 格式），欢迎免费阅览。");
         site.setElementProp("intro-scanqr", null, "微信扫码关注公众号");
@@ -59,66 +133,73 @@
         <section>
             <h1><a href="https://jinchen.org"><em>Jinchen Art</em></a></h1>
             <ul>
-                <li title="虚实之间">
+                <li>
                     <a href="https://jinchen.org/realunreal" id="title-realun">Real &amp; Unreal</a>
                 </li>
-                <li class="state-sel" title="《江西水彩》">
+                <li class="state-sel">
                     <a href="https://jinchen.org/watercolor" id="title-jxwatercolor">Jiangxi Watercolor</a>
                 </li>
-                <li title="金辰装饰设计">
+                <li>
                     <a href="https://jinchen.org/decoration" id="title-decoration">Decoration</a>
                 </li>
             </ul>
         </section>
     </header>
-    <section style="min-height: 640px; margin-bottom: 60px; ">
-        <section>
-            <em id="title-magazine">Jiangxi Watercolor Painting</em>
-            <span id="desc-magazine">magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, P.R.China.</span>
+    <section>
+        <section id="part-intro">
+            <div class="x-bg-motley">
+                <dfn id="title-magazine">Jiangxi Watercolor Painting</dfn>
+                <span id="desc-magazine">magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, P.R.China.</span>
+            </div>
+            <dl>
+                <div class="x-bg-motley"><dt id="lable-producer">Producer</dt><dd id="value-producer">Watercolor & Gouache Committee, Fine Artist Association of Jiangxi Province, P.R.China.</dd></div>
+                <div class="x-bg-motley"><dt id="lable-chief">Chief Editor</dt><dd>段 湧 &nbsp; (David Tuan)</dd></div>
+            </dl>
         </section>
-        <section>
-            <ul>
-                <li><strong id="lable-producer">Producer</strong>
-                    <br /><span id="value-producer">Watercolor & Gouache Committee, Fine Artist Association of Jiangxi Province, P.R.China.</span></li>
-                <li><strong id="lable-chief">Chief Editor</strong><br /><span>段 湧 (David Tuan).</span></li>
-            </ul>
+    </section>
+    <section>
+        <section class="layout-wide-full x-bg-motley-light">
+            <h2 id="title-articles" class="x-section">WeChat</h2>
         </section>
-        <h2 class="x-section">WeChat<span>&nbsp; 微信公众号</span></h2>
         <section>
             <span id="intro-articles">Please follow the account at WeChat Media Platform to get details.</span>
         </section>
-        <section>
-            <a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/LyMWE5WXvIt80Na4cSqFYA"><span>写生中国水彩协会南昌分会作品<span>&nbsp; 2025年5月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/vtkf-f0XJdQK4mzyfBNQRg"><span>冬如玉·东方美术作品展<span>&nbsp; 2024年1月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/m7efRBY_Hq-bBnBf7fq1Tg"><span>2023东方美术迎春作品展<span>&nbsp; 2023年1月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/t1B2MQqHOnciRkPUyhBZ_w"><span>这个夏天<span>&nbsp; 2022年8月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/bb-HiC-zzVunODV896EYcg"><span>看东方·5月<span>&nbsp; 2022年5月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/aCgUkx6sKXT2wSmNLv61Qg"><span>看东方·4月<span>&nbsp; 2022年4月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/KCHlsOu5FZE5jY2PBZ8vcQ"><span>我们在东方<span>&nbsp; 2022年4月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/Rq6WwNQjPhYhOhaeq0q_0w"><span>东方美术作品展·身边的故事<span>&nbsp; 2021年7月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/nwlWgttbNt-12VMPd4zpUQ"><span>北美新华传媒7月25日报道《江南西道·江西省水彩画名家作品展》在东南艺术馆隆重开幕<span>&nbsp; 2019年7月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/iycPhL1mAF6IrsvQCVZ8eg"><span>江南西道·江西水彩名家作品展艺术研讨会<span>&nbsp; 2019年7月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/xY_37CSEhO4xKwddLYY2Yw"><span>《画与诗·心亦远方》Painting and Poetry - Heart Is Far Away<span>&nbsp; 2019年6月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/YhPVhDvw-e_rXyHOgaPebA"><span>相约青岛~那片海<span>&nbsp; 2018年8月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/VaP6tk-rKiksMfabJdjVKw"><span>2015 江西省水彩画、粉画展巡礼（三）风景作品专辑<span>&nbsp; 2016年2月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/7auOT6Jeh5hd82hj8Hr0HQ"><span>2015 江西省水彩画、粉画展巡礼（二）风景作品专辑<span>&nbsp; 2016年2月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/TJYsuJ7zY4o1nce8lmqtPg"><span>2015 江西省水彩画、粉画展巡礼（一）人物风情专辑<span>&nbsp; 2016年1月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/3MRkI8ZZFyBowSUYdYcqAg"><span>《透明氤氲·空灵虚远》李卫平教授水彩画作品<span>&nbsp; 2015年7月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/zspHyTAHv6v0A5yAMaqfGA"><span>《南山松茂》陈松茂教授的水彩人体作品<span>&nbsp; 2015年7月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/NdKCHL66rxztGi93d0gN9w"><span>透明色彩的耕作者—杜玉华教授<span>&nbsp; 2015年6月</span></span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/1jiyOcRmyjyAWODsReqBZw">把喜爱的画带回家<span><span>&nbsp; 2015年5月</span></span>
+        <section id="list-articles">
+            <a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/LyMWE5WXvIt80Na4cSqFYA"><span>写生中国水彩协会南昌分会作品</span><span>2025年5月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/vtkf-f0XJdQK4mzyfBNQRg"><span>冬如玉·东方美术作品展</span><span>2024年1月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/m7efRBY_Hq-bBnBf7fq1Tg"><span>2023东方美术迎春作品展</span><span>2023年1月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/t1B2MQqHOnciRkPUyhBZ_w"><span>这个夏天</span><span>2022年8月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/bb-HiC-zzVunODV896EYcg"><span>看东方·5月</span><span>2022年5月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/aCgUkx6sKXT2wSmNLv61Qg"><span>看东方·4月</span><span>2022年4月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/KCHlsOu5FZE5jY2PBZ8vcQ"><span>我们在东方</span><span>2022年4月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/Rq6WwNQjPhYhOhaeq0q_0w"><span>东方美术作品展·身边的故事</span><span>2021年7月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/nwlWgttbNt-12VMPd4zpUQ"><span>北美新华传媒7月25日报道《江南西道·江西省水彩画名家作品展》在东南艺术馆隆重开幕</span><span>2019年7月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/iycPhL1mAF6IrsvQCVZ8eg"><span>江南西道·江西水彩名家作品展艺术研讨会</span><span>2019年7月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/xY_37CSEhO4xKwddLYY2Yw"><span>《画与诗·心亦远方》Painting and Poetry - Heart Is Far Away</span><span>2019年6月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/YhPVhDvw-e_rXyHOgaPebA"><span>相约青岛~那片海</span><span>2018年8月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/VaP6tk-rKiksMfabJdjVKw"><span>2015 江西省水彩画、粉画展巡礼（三）风景作品专辑</span><span>2016年2月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/7auOT6Jeh5hd82hj8Hr0HQ"><span>2015 江西省水彩画、粉画展巡礼（二）风景作品专辑</span><span>2016年2月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/TJYsuJ7zY4o1nce8lmqtPg"><span>2015 江西省水彩画、粉画展巡礼（一）人物风情专辑</span><span>2016年1月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/3MRkI8ZZFyBowSUYdYcqAg"><span>《透明氤氲·空灵虚远》李卫平教授水彩画作品</span><span>2015年7月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/zspHyTAHv6v0A5yAMaqfGA"><span>《南山松茂》陈松茂教授的水彩人体作品</span><span>2015年7月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/NdKCHL66rxztGi93d0gN9w"><span>透明色彩的耕作者—杜玉华教授</span><span>2015年6月</span>
+            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/1jiyOcRmyjyAWODsReqBZw"><span>把喜爱的画带回家</span><span>2015年5月</span>
             </a>
         </section>
-        <h2 class="x-section">Early Magazine<span>&nbsp; 早期杂志</span></h2>
+    </section>
+    <section>
+        <section class="layout-wide-full x-bg-motley-light">
+            <h2 id="title-pdfs" class="x-section">Early Magazines</h2>
+        </section>
         <section>
             <span id="intro-pdfs">You can read following free digital copies of yearbook. They are in portable document format (.pdf file).</span>
         </section>
-        <section class="link-tile-wide">
-            <a style="display: none; " href="./magazine/WatercolorJx-2020.pdf"><span>2020</span>
-            </a><a href="./magazine/WatercolorJx-2019.pdf"><span>2019</span>
-            </a><a href="./magazine/WatercolorJx-2018.pdf"><span>2018</span>
-            </a><a href="./magazine/WatercolorJx-2017.pdf"><span>2017</span>
-            </a><a href="./magazine/WatercolorJx-2016.pdf"><span>2016</span>
+        <section id="list-pdfs" class="link-tile-wide">
+            <a style="display: none; " href="./magazine/WatercolorJx-2020.pdf"><img alt="Annal 2020" src="./magazine/thumbs/wcp-jx-2020-cover.jpg" loading="lazy" /><span>Annal 2020</span>
+            </a><a href="./magazine/WatercolorJx-2019.pdf">2019
+            </a><a href="./magazine/WatercolorJx-2018.pdf"><img alt="Annal 2018" src="./magazine/thumbs/wcp-jx-2018-cover.jpg" loading="lazy" /><span>Annal 2018</span>
+            </a><a href="./magazine/WatercolorJx-2017.pdf"><img alt="Annal 2017" src="./magazine/thumbs/wcp-jx-2017-cover.jpg" loading="lazy" /><span>Annal 2017</span>
+            </a><a href="./magazine/WatercolorJx-2016.pdf"><img alt="Annal 2016" src="./magazine/thumbs/wcp-jx-2016-cover.jpg" loading="lazy" /><span>Annal 2016</span>
             </a>
         </section>
     </section>
