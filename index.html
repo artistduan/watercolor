@@ -88,6 +88,11 @@
     section > a.link-long-button > span + span {
         color: #999; font-size: 14px; margin-left: 20px;
     }
+    @media screen and (max-width:800px) {
+        #part-intro > dl > div > dt, #part-intro > dl > div > dd {
+            display: block;
+        }
+    }
     </style>
     <script type="text/javascript" src="https://jinchen.org/js/current.js" ></script>
     <script type="text/javascript">
@@ -96,7 +101,7 @@
             "title": "",
             "title-magazine": "jxWatercolor"
         });
-        let arr = [2016, 2017, 2018, 2019].map(function (year) {
+        let arr = [2019, 2018, 2017, 2016].map(function (year) {
             let y = year.toString(10);
             let name = zh ? (y + "年刊") : ("Annal " + y);
             return {
