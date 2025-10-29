@@ -153,11 +153,19 @@
         { name: "透明色彩的耕作者—杜玉华教授", url: "NdKCHL66rxztGi93d0gN9w", type: "wx-mp-s", thumb: "", year: 2015, month: 6 },
         { name: "把喜爱的画带回家", url: "1jiyOcRmyjyAWODsReqBZw", type: "wx-mp-s", thumb: "", year: 2015, month: 5 }
     ];
-    function renderMp() {
-        let arr = [];
-        for (let i = 0; i < articles.length; i++) {
-            let a = articles[i];
-            if (!a || !a.name || !a.url || !a.year) continue;
+
+    const globalInfo = {
+        month: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    };
+
+    function onInit() {
+        let zh = curSite.translate({
+            "title": "",
+            "title-magazine": "jxWatercolor"
+        });
+
+        let arr = articles.map(function (a) {
+            if (!a || !a.name || !a.url || !a.year) return null;
             let item = {
                 tagName: "a",
                 styleRefs: "link-long-button",
@@ -166,7 +174,7 @@
             };
             if (!a.type || a.type === "link" || a.type === "url") item.props.href = a.url;
             else if (a.type === "wx-mp-s") item.props.href = "https://mp.weixin.qq.com/s/" + a.url;
-            else continue;
+            else return null;
             if (item.props.href.startsWith("./")) delete props.target;
             let thumb = a.thumb;
             if (thumb) {
@@ -174,21 +182,24 @@
                 item.children.push({ tagName: "img", props: { alt: a.name, src: thumb, loading: "lazy" } });
             }
 
+            let date = a.year.toString(10);
+            if (zh) {
+                if (a.month && a.month < 13 && a.month > 0) date = date + "年" + a.month.toString(10) + "月";
+                else date += "年";
+            } else {
+                if (a.month && a.month < 13 && a.month > 0) date = globalInfo.month[a.month - 1] + ", " + date;
+                else date = "'" + date;
+            }
+
             item.children.push(
                 { tagName: "span", children: a.name },
-                { tagName: "span", children: a.year + "年" + (a.month ? (a.month + "月") : "") }
+                { tagName: "span", children: date }
             );
-            arr.push(item);
-        }
-
+            return item;
+        }).filter(function (a) { return a != null; });
         Hje.render("list-articles", { children: arr });
-    }
-    function onInit() {
-        let zh = curSite.translate({
-            "title": "",
-            "title-magazine": "jxWatercolor"
-        });
-        let arr = [2019, 2018, 2017, 2016].map(function (year) {
+
+        arr = [2019, 2018, 2017, 2016].map(function (year) {
             let y = year.toString(10);
             let name = zh ? (y + "年刊") : ("Annal " + y);
             return {
@@ -207,7 +218,6 @@
             }
         });
         Hje.render("list-pdfs", { styleRefs: "link-tile-wide", children: arr });
-        renderMp();
         if (zh) return;
         site.setElementProp("desc-magazine", null, "magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, P.R.China.");
         site.setElementProp("lable-producer", null, "Producer");
