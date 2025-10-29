@@ -38,6 +38,9 @@
     #part-intro > div:first-child > dfn::after {
         content: "》";
     }
+    #part-intro > div:first-child > dfn + span {
+        margin: 10px 0 0 16px; display: block;
+    }
     #part-intro > dl {
         padding: 0; margin: 0;
     }
@@ -52,6 +55,30 @@
     }
     #part-intro > dl > div > dd {
         font-size: 16px; margin: 0; vertical-align: middle; display: inline-block;
+    }
+    #list-articles > a {
+        position: relative;
+    }
+    #list-articles > a > img:first-child {
+        width: 160px; height: 90px; border-radius: 2px; object-fit: cover; display: none;
+    }
+    #list-articles > a:nth-child(-n+6):has(> img:first-child) {
+        min-height: 70px; padding-left: 180px;
+    }
+    #list-articles > a:nth-child(-n+6) > img:first-child, #list-articles > a:nth-child(-n+6):visited > img:first-child {
+        position: absolute; top: 5px; left: 6px; display: block; transition: 0.1s;
+    }
+    #list-articles > a:nth-child(-n+6):hover > img:first-child {
+        top: 4px; transition: 0.4s;
+    }
+    #list-articles > a:nth-child(-n+6):active > img:first-child {
+        top: 5px; transition: 0.1s;
+    }
+    #list-articles > a:nth-child(-n+6) > img:first-child + span {
+        display: block;
+    }
+    #list-articles > a:nth-child(-n+6) > img:first-child + span + span {
+        margin-left: 0;
     }
     #list-pdfs > a {
         text-align: center;
@@ -90,6 +117,12 @@
         color: #999; font-size: 14px; margin-left: 20px;
     }
     @media screen and (max-width:800px) {
+        a.link-long-button, a.link-long-button:visited {
+            font-size: 16px;
+        }
+        a.link-long-button > span {
+            line-height: 20px;
+        }
         #part-intro > dl > div > dt, #part-intro > dl > div > dd {
             display: block;
         }
@@ -97,6 +130,59 @@
     </style>
     <script type="text/javascript" src="https://jinchen.org/js/current.js" ></script>
     <script type="text/javascript">
+    const articles = [
+        { name: "写生中国水彩画俱乐部南昌作品交流展", url: "dp22TPv6wws0Ti7s84Pc2Q", type: "wx-mp-s", thumb: "#wx-10-b.webp", year: 2025, month: 10 },
+        { name: "秋如醉·2025东方美术作品展", url: "AjuILJ35H1pMnJdgmL2b-A", type: "wx-mp-s", thumb: "#wx-10-a.webp", year: 2025, month: 10 },
+        { name: "写生中国水彩协会南昌分会作品", url: "LyMWE5WXvIt80Na4cSqFYA", type: "wx-mp-s", thumb: "#wx-05-a.webp", year: 2025, month: 5 },
+        { name: "冬如玉·东方美术作品展", url: "vtkf-f0XJdQK4mzyfBNQRg", type: "wx-mp-s", thumb: "", year: 2024, month: 1 },
+        { name: "2023东方美术迎春作品展", url: "m7efRBY_Hq-bBnBf7fq1Tg", type: "wx-mp-s", thumb: "", year: 2023, month: 1 },
+        { name: "这个夏天", url: "t1B2MQqHOnciRkPUyhBZ_w", type: "wx-mp-s", thumb: "", year: 2022, month: 8 },
+        { name: "看东方·5月", url: "bb-HiC-zzVunODV896EYcg", type: "wx-mp-s", thumb: "", year: 2022, month: 5 },
+        { name: "看东方·4月", url: "aCgUkx6sKXT2wSmNLv61Qg", type: "wx-mp-s", thumb: "", year: 2022, month: 4 },
+        { name: "我们在东方", url: "KCHlsOu5FZE5jY2PBZ8vcQ", type: "wx-mp-s", thumb: "", year: 2022, month: 4 },
+        { name: "东方美术作品展·身边的故事", url: "Rq6WwNQjPhYhOhaeq0q_0w", type: "wx-mp-s", thumb: "", year: 2021, month: 7 },
+        { name: "北美新华传媒7月25日报道《江南西道·江西省水彩画名家作品展》在东南艺术馆隆重开幕", url: "nwlWgttbNt-12VMPd4zpUQ", type: "wx-mp-s", thumb: "", year: 2019, month: 7 },
+        { name: "江南西道·江西水彩名家作品展艺术研讨会", url: "iycPhL1mAF6IrsvQCVZ8eg", type: "wx-mp-s", thumb: "", year: 2019, month: 7 },
+        { name: "《画与诗·心亦远方》Painting and Poetry - Heart Is Far Away", url: "xY_37CSEhO4xKwddLYY2Yw", type: "wx-mp-s", thumb: "", year: 2019, month: 6 },
+        { name: "相约青岛~那片海", url: "YhPVhDvw-e_rXyHOgaPebA", type: "wx-mp-s", thumb: "", year: 2018, month: 8 },
+        { name: "2015 江西省水彩画、粉画展巡礼（三）风景作品专辑", url: "VaP6tk-rKiksMfabJdjVKw", type: "wx-mp-s", thumb: "", year: 2016, month: 2 },
+        { name: "2015 江西省水彩画、粉画展巡礼（二）风景作品专辑", url: "7auOT6Jeh5hd82hj8Hr0HQ", type: "wx-mp-s", thumb: "", year: 2016, month: 2 },
+        { name: "2015 江西省水彩画、粉画展巡礼（一）人物风情专辑", url: "TJYsuJ7zY4o1nce8lmqtPg", type: "wx-mp-s", thumb: "", year: 2016, month: 1 },
+        { name: "《透明氤氲·空灵虚远》李卫平教授水彩画作品", url: "3MRkI8ZZFyBowSUYdYcqAg", type: "wx-mp-s", thumb: "", year: 2015, month: 7 },
+        { name: "《南山松茂》陈松茂教授的水彩人体作品", url: "zspHyTAHv6v0A5yAMaqfGA", type: "wx-mp-s", thumb: "", year: 2015, month: 7 },
+        { name: "透明色彩的耕作者—杜玉华教授", url: "NdKCHL66rxztGi93d0gN9w", type: "wx-mp-s", thumb: "", year: 2015, month: 6 },
+        { name: "把喜爱的画带回家", url: "1jiyOcRmyjyAWODsReqBZw", type: "wx-mp-s", thumb: "", year: 2015, month: 5 }
+    ];
+    function renderMp() {
+        let arr = [];
+        for (let i = 0; i < articles.length; i++) {
+            let a = articles[i];
+            if (!a || !a.name || !a.url || !a.year) continue;
+            let item = {
+                tagName: "a",
+                styleRefs: "link-long-button",
+                props: { target: "_blank" },
+                children: []
+            };
+            if (!a.type || a.type === "link" || a.type === "url") item.props.href = a.url;
+            else if (a.type === "wx-mp-s") item.props.href = "https://mp.weixin.qq.com/s/" + a.url;
+            else continue;
+            if (item.props.href.startsWith("./")) delete props.target;
+            let thumb = a.thumb;
+            if (thumb) {
+                if (thumb.startsWith("#") && thumb.length > 5) thumb = "./images/thumbs/" + a.year + "/" + thumb.replace("#", "");
+                item.children.push({ tagName: "img", props: { alt: a.name, src: thumb, loading: "lazy" } });
+            }
+
+            item.children.push(
+                { tagName: "span", children: a.name },
+                { tagName: "span", children: a.year + "年" + (a.month ? (a.month + "月") : "") }
+            );
+            arr.push(item);
+        }
+
+        Hje.render("list-articles", { children: arr });
+    }
     function onInit() {
         let zh = curSite.translate({
             "title": "",
@@ -121,23 +207,24 @@
             }
         });
         Hje.render("list-pdfs", { styleRefs: "link-tile-wide", children: arr });
-        if (!zh) return;
-        site.setElementProp("desc-magazine", null, "杂志以优异多元的水彩画为展现契机和艺术平台，向大家介绍来自中国江西的艺术家和他们的精彩故事。");
-        site.setElementProp("lable-producer", null, "出品");
-        site.setElementProp("value-producer", null, "江西省美术家协会 \\ 水彩·水粉艺委会");
-        site.setElementProp("lable-chief", null, "主编");
-        site.setElementProp("title-articles", null, "微信公众号");
-        site.setElementProp("title-pdfs", null, "早期杂志");
-        site.setElementProp("intro-articles", null, "请关注微信公众号了解详情。以下是部分内容。");
-        site.setElementProp("intro-pdfs", null, "以下是部分过往期刊电子版（PDF 格式），欢迎免费阅览。");
-        site.setElementProp("intro-scanqr", null, "微信扫码关注公众号");
+        renderMp();
+        if (zh) return;
+        site.setElementProp("desc-magazine", null, "magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, P.R.China.");
+        site.setElementProp("lable-producer", null, "Producer");
+        site.setElementProp("value-producer", null, "Watercolor & Gouache Committee, Fine Artist Association of Jiangxi Province, P.R.China.");
+        site.setElementProp("lable-chief", null, "Chief Editor");
+        site.setElementProp("title-articles", null, "WeChat");
+        site.setElementProp("title-pdfs", null, "Early Magazines");
+        site.setElementProp("intro-articles", null, "Please follow the account at WeChat Media Platform to get details.");
+        site.setElementProp("intro-pdfs", null, "You can read following free digital copies of yearbook. They are in portable document format (.pdf file).");
+        site.setElementProp("intro-scanqr", null, "Scan by WeChat");
     }
     </script>
 </head>
 <body onload="onInit()">
     <header>
         <section>
-            <h1><a href="https://jinchen.org"><em>Jinchen Art</em></a></h1>
+            <h1><a title="金辰艺术网" href="https://jinchen.org"><em>Jinchen Art</em></a></h1>
             <ul>
                 <li>
                     <a href="https://jinchen.org/realunreal" id="title-realun">Real &amp; Unreal</a>
@@ -155,50 +242,30 @@
         <section id="part-intro">
             <div class="x-bg-motley">
                 <dfn id="title-magazine">Jiangxi Watercolor Painting</dfn>
-                <span id="desc-magazine">magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, P.R.China.</span>
+                <span id="desc-magazine">杂志以优异多元的水彩画为展现契机和艺术平台，向大家介绍来自江西的艺术家和他们的精彩故事。</span>
             </div>
             <dl>
-                <div class="x-bg-motley"><dt id="lable-producer">Producer</dt><dd id="value-producer">Watercolor & Gouache Committee, Fine Artist Association of Jiangxi Province, P.R.China.</dd></div>
-                <div class="x-bg-motley"><dt id="lable-chief">Chief Editor</dt><dd>段 湧 &nbsp; (David Tuan)</dd></div>
+                <div class="x-bg-motley"><dt id="lable-producer">出品</dt><dd id="value-producer">江西省美术家协会 \ 水彩·水粉艺委会</dd></div>
+                <div class="x-bg-motley"><dt id="lable-chief">主编</dt><dd>段 湧 &nbsp; (David Tuan)</dd></div>
             </dl>
         </section>
     </section>
     <section>
         <section class="layout-wide-full x-bg-motley-light">
-            <h2 id="title-articles" class="x-section">WeChat</h2>
+            <h2 id="title-articles" class="x-section">微信公众号</h2>
         </section>
         <section>
-            <span id="intro-articles">Please follow the account at WeChat Media Platform to get details.</span>
+            <span id="intro-articles">请关注微信公众号了解详情。以下是部分内容。</span>
         </section>
         <section id="list-articles">
-            <a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/LyMWE5WXvIt80Na4cSqFYA"><span>写生中国水彩协会南昌分会作品</span><span>2025年5月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/vtkf-f0XJdQK4mzyfBNQRg"><span>冬如玉·东方美术作品展</span><span>2024年1月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/m7efRBY_Hq-bBnBf7fq1Tg"><span>2023东方美术迎春作品展</span><span>2023年1月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/t1B2MQqHOnciRkPUyhBZ_w"><span>这个夏天</span><span>2022年8月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/bb-HiC-zzVunODV896EYcg"><span>看东方·5月</span><span>2022年5月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/aCgUkx6sKXT2wSmNLv61Qg"><span>看东方·4月</span><span>2022年4月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/KCHlsOu5FZE5jY2PBZ8vcQ"><span>我们在东方</span><span>2022年4月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/Rq6WwNQjPhYhOhaeq0q_0w"><span>东方美术作品展·身边的故事</span><span>2021年7月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/nwlWgttbNt-12VMPd4zpUQ"><span>北美新华传媒7月25日报道《江南西道·江西省水彩画名家作品展》在东南艺术馆隆重开幕</span><span>2019年7月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/iycPhL1mAF6IrsvQCVZ8eg"><span>江南西道·江西水彩名家作品展艺术研讨会</span><span>2019年7月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/xY_37CSEhO4xKwddLYY2Yw"><span>《画与诗·心亦远方》Painting and Poetry - Heart Is Far Away</span><span>2019年6月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/YhPVhDvw-e_rXyHOgaPebA"><span>相约青岛~那片海</span><span>2018年8月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/VaP6tk-rKiksMfabJdjVKw"><span>2015 江西省水彩画、粉画展巡礼（三）风景作品专辑</span><span>2016年2月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/7auOT6Jeh5hd82hj8Hr0HQ"><span>2015 江西省水彩画、粉画展巡礼（二）风景作品专辑</span><span>2016年2月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/TJYsuJ7zY4o1nce8lmqtPg"><span>2015 江西省水彩画、粉画展巡礼（一）人物风情专辑</span><span>2016年1月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/3MRkI8ZZFyBowSUYdYcqAg"><span>《透明氤氲·空灵虚远》李卫平教授水彩画作品</span><span>2015年7月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/zspHyTAHv6v0A5yAMaqfGA"><span>《南山松茂》陈松茂教授的水彩人体作品</span><span>2015年7月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/NdKCHL66rxztGi93d0gN9w"><span>透明色彩的耕作者—杜玉华教授</span><span>2015年6月</span>
-            </a><a class="link-long-button" target="_blank" href="https://mp.weixin.qq.com/s/1jiyOcRmyjyAWODsReqBZw"><span>把喜爱的画带回家</span><span>2015年5月</span>
-            </a>
         </section>
     </section>
     <section>
         <section class="layout-wide-full x-bg-motley-light">
-            <h2 id="title-pdfs" class="x-section">Early Magazines</h2>
+            <h2 id="title-pdfs" class="x-section">早期杂志</h2>
         </section>
         <section>
-            <span id="intro-pdfs">You can read following free digital copies of yearbook. They are in portable document format (.pdf file).</span>
+            <span id="intro-pdfs">以下是部分过往期刊电子版（PDF 格式），欢迎免费阅览。</span>
         </section>
         <section id="list-pdfs" class="link-tile-wide">
             <a style="display: none; " href="./magazine/WatercolorJx-2020.pdf"><img alt="Annal 2020" src="./magazine/thumbs/wcp-jx-2020-cover.jpg" loading="lazy" /><span>Annal 2020</span>
@@ -213,7 +280,7 @@
         <section>
             <div class="x-qrcode">
                 <img alt="QR Code" src="assets/qrcode_wechat.jpg" /><br />
-                <span id="intro-scanqr">Scan by WeChat</span>
+                <span id="intro-scanqr">微信扫码关注公众号</span>
             </div>
         </section>
     </footer>
