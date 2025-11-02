@@ -117,15 +117,32 @@
         color: #999; font-size: 14px; margin-left: 20px;
     }
     @media screen and (max-width:800px) {
-        a.link-long-button, a.link-long-button:visited {
-            font-size: 16px;
-        }
-        a.link-long-button > span {
-            line-height: 20px;
-        }
-        #part-intro > dl > div > dt, #part-intro > dl > div > dd {
-            display: block;
-        }
+    a.link-long-button, a.link-long-button:visited {
+        font-size: 16px;
+    }
+    a.link-long-button > span {
+        line-height: 20px;
+    }
+    #part-intro > dl > div > dt, #part-intro > dl > div > dd {
+        display: block;
+    }
+    }
+    @media screen and (max-width:400px) {
+    #list-articles > a > img:first-child {
+        width: 128px; height: 72px;
+    }
+    #list-articles > a:nth-child(-n+6):has(> img:first-child) {
+        padding-left: 144px; padding-right: 14px;
+    }
+    #list-articles > a:nth-child(-n+6) > img:first-child, #list-articles > a:nth-child(-n+6):visited > img:first-child {
+        top: 14px;
+    }
+    #list-articles > a:nth-child(-n+6):hover > img:first-child {
+        top: 12px;
+    }
+    #list-articles > a:nth-child(-n+6):active > img:first-child {
+        top: 14px;
+    }
     }
     </style>
     <script type="text/javascript" src="https://jinchen.org/js/current.js" ></script>
