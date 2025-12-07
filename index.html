@@ -8,10 +8,10 @@
     <meta name="description" content="Jiangxi Watercolor Painting magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, China." />
     <meta property="og:description" content="Jiangxi Watercolor Painting magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, China." />
     <link rel="canonical" href="https://jinchen.org/watercolor/" />
-    <link href="https://cdn.jsdelivr.net/npm/hje@2.2.0/docs/css/site.art.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/hje@2.3.1/docs/css/site.art.css" rel="stylesheet" />
     <link href="https://jinchen.org/css/current.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="./images/logos/jinchen-art.png" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hje@2.2.0/docs/js/site.bundle.js" ></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/hje@2.3.1/docs/js/mdblogs.js" ></script>
     <title>Jiangxi Watercolor  江西水彩</title>
     <style type="text/css">
     body > section:has(+ footer) {
@@ -236,15 +236,15 @@
         });
         Hje.render("list-pdfs", { styleRefs: "link-tile-wide", children: arr });
         if (zh) return;
-        site.setElementProp("desc-magazine", null, "magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, P.R.China.");
-        site.setElementProp("lable-producer", null, "Producer");
-        site.setElementProp("value-producer", null, "Watercolor & Gouache Committee, Fine Artist Association of Jiangxi Province, P.R.China.");
-        site.setElementProp("lable-chief", null, "Chief Editor");
-        site.setElementProp("title-articles", null, "WeChat");
-        site.setElementProp("title-pdfs", null, "Early Magazines");
-        site.setElementProp("intro-articles", null, "Please follow the account at WeChat Media Platform to get details.");
-        site.setElementProp("intro-pdfs", null, "You can read following free digital copies of yearbook. They are in portable document format (.pdf file).");
-        site.setElementProp("intro-scanqr", null, "Scan by WeChat");
+        DeepX.MdBlogs.setElementProp("desc-magazine", null, "magazine shows the watercolor painting works and related stories of the famous fine artists of Jiangxi Province, P.R.China.");
+        DeepX.MdBlogs.setElementProp("lable-producer", null, "Producer");
+        DeepX.MdBlogs.setElementProp("value-producer", null, "Watercolor & Gouache Committee, Fine Artist Association of Jiangxi Province, P.R.China.");
+        DeepX.MdBlogs.setElementProp("lable-chief", null, "Chief Editor");
+        DeepX.MdBlogs.setElementProp("title-articles", null, "WeChat");
+        DeepX.MdBlogs.setElementProp("title-pdfs", null, "Early Magazines");
+        DeepX.MdBlogs.setElementProp("intro-articles", null, "Please follow the account at WeChat Media Platform to get details.");
+        DeepX.MdBlogs.setElementProp("intro-pdfs", null, "You can read following free digital copies of yearbook. They are in portable document format (.pdf file).");
+        DeepX.MdBlogs.setElementProp("intro-scanqr", null, "Scan by WeChat");
     }
     </script>
 </head>
